@@ -115,7 +115,7 @@ class ReactNativeDrawerExperiment extends Component {
         tweenHandler={Drawer.tweenPresets.parallax}
         ref={(ref) => this._drawerLeft = ref}
         content={this.controlPanelLeft()}
-        panOpenMask={0.8}
+        panOpenMask={0.5}
         side="left"
         tapToClose
       >
@@ -127,7 +127,7 @@ class ReactNativeDrawerExperiment extends Component {
           tweenHandler={Drawer.tweenPresets.parallax}
           ref={(ref) => this._drawerRight = ref}
           content={this.controlPanelRight()}
-          panOpenMask={0.8}
+          panOpenMask={0.5}
           side="right"
           tapToClose
           >
