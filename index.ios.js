@@ -19,9 +19,12 @@ class ReactNativeDrawerExperiment extends Component {
   mainView() {
     return (
       <View style={styles.container}>
-          <Text
-            onPress={ () => this._drawer.open() }
-            >Touch me</Text>
+        <Text onPress={ () => this._drawerLeft.open() }>
+          Touch me left
+        </Text>
+        <Text onPress={ () => this._drawerRight.open() }>
+          Touch me right
+        </Text>
       </View>
     );
   }
@@ -59,7 +62,7 @@ class ReactNativeDrawerExperiment extends Component {
         closedDrawerOffset={-10}
         styles={drawerLeftStyles}
         tweenHandler={Drawer.tweenPresets.parallax}
-        ref={(ref) => this._drawer = ref}
+        ref={(ref) => this._drawerLeft = ref}
         content={this.controlPanelLeft()}
         panOpenMask={0.8}
         side="left"
@@ -71,7 +74,7 @@ class ReactNativeDrawerExperiment extends Component {
           closedDrawerOffset={-10}
           styles={drawerRightStyles}
           tweenHandler={Drawer.tweenPresets.parallax}
-          ref={(ref) => this._drawer = ref}
+          ref={(ref) => this._drawerRight = ref}
           content={this.controlPanelRight()}
           panOpenMask={0.8}
           side="right"
