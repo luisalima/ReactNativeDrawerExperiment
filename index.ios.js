@@ -16,8 +16,8 @@ import {
 
 import Drawer from 'react-native-drawer';
 
-class ExampleView extends Component {
-  mainView() {
+class MainView extends Component {
+  render() {
     return (
       <View style={styles.container}>
         <Text onPress={ () => this._drawerLeft.open() }>
@@ -27,62 +27,6 @@ class ExampleView extends Component {
           Touch me right
         </Text>
       </View>
-    );
-  }
-  
-  controlPanelLeft() {
-    return (
-      <View>
-        <Text>CONTROL PANEL LEFT!!!!</Text>
-      </View>
-    );
-  }
-
-  controlPanelRight() {
-    return (
-      <View>
-        <Text>CONTROL PANEL RIGHT!!!!</Text>
-      </View>
-    );
-  }
-
-  closeControlPanel = () => {
-    this._drawer.close()
-  }
-
-  openControlPanel = () => {
-    this._drawer.open()
-  }
-
-  render() {
-    return (
-      <Drawer
-        type="static"
-        openDrawerOffset={100}
-        closedDrawerOffset={-10}
-        styles={drawerLeftStyles}
-        tweenHandler={Drawer.tweenPresets.parallax}
-        ref={(ref) => this._drawerLeft = ref}
-        content={this.controlPanelLeft()}
-        panOpenMask={0.8}
-        side="left"
-        tapToClose
-      >
-        <Drawer
-          type="static"
-          openDrawerOffset={100}
-          closedDrawerOffset={-10}
-          styles={drawerRightStyles}
-          tweenHandler={Drawer.tweenPresets.parallax}
-          ref={(ref) => this._drawerRight = ref}
-          content={this.controlPanelRight()}
-          panOpenMask={0.8}
-          side="right"
-          tapToClose
-          >
-          {this.mainView()}
-        </Drawer>
-      </Drawer>
     );
   }
 }
@@ -122,12 +66,36 @@ class ReactNativeDrawerExperiment extends Component {
     };
   }
 
-  render() {
+  controlPanelLeft() {
+    return (
+      <View>
+        <Text>CONTROL PANEL LEFT!!!!</Text>
+      </View>
+    );
+  }
+
+  controlPanelRight() {
+    return (
+      <View>
+        <Text>CONTROL PANEL RIGHT!!!!</Text>
+      </View>
+    );
+  }
+
+  closeControlPanel = () => {
+    this._drawer.close()
+  }
+
+  openControlPanel = () => {
+    this._drawer.open()
+  }
+
+  renderNavigatorWrapper() {
     return (
       <Navigator
         configureScene={ this.configureScene }
         style={{flex: 1}}
-        initialRoute={{component: ExampleView, title: "Experiment List"}}
+        initialRoute={{component: MainView, title: "Experiment List"}}
         renderScene={ this.renderScene }
         navigationBar={
           <Navigator.NavigationBar
@@ -136,6 +104,38 @@ class ReactNativeDrawerExperiment extends Component {
           />
         }
       />
+    );
+  }
+
+  render() {
+    return (
+      <Drawer
+        type="static"
+        openDrawerOffset={100}
+        closedDrawerOffset={-10}
+        styles={drawerLeftStyles}
+        tweenHandler={Drawer.tweenPresets.parallax}
+        ref={(ref) => this._drawerLeft = ref}
+        content={this.controlPanelLeft()}
+        panOpenMask={0.8}
+        side="left"
+        tapToClose
+      >
+        <Drawer
+          type="static"
+          openDrawerOffset={100}
+          closedDrawerOffset={-10}
+          styles={drawerRightStyles}
+          tweenHandler={Drawer.tweenPresets.parallax}
+          ref={(ref) => this._drawerRight = ref}
+          content={this.controlPanelRight()}
+          panOpenMask={0.8}
+          side="right"
+          tapToClose
+          >
+          {this.renderNavigatorWrapper()}
+        </Drawer>
+      </Drawer>
     );
   }
 }
