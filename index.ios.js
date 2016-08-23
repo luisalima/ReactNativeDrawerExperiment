@@ -46,7 +46,8 @@ class ReactNativeDrawerExperiment extends Component {
     return (
       <Drawer
         type="static"
-        openDrawerOffset={10}
+        openDrawerOffset={100}
+        closedDrawerOffset={10}
         styles={drawerStyles}
         tweenHandler={Drawer.tweenPresets.parallax}
         ref={(ref) => this._drawer = ref}
