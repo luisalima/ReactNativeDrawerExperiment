@@ -16,21 +16,6 @@ import {
 
 import Drawer from 'react-native-drawer';
 
-class MainView extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text onPress={ () => this._drawerLeft.open() }>
-          Touch me left
-        </Text>
-        <Text onPress={ () => this._drawerRight.open() }>
-          Touch me right
-        </Text>
-      </View>
-    );
-  }
-}
-
 class ReactNativeDrawerExperiment extends Component {
   configureScene(route, routeStack) {
     return Navigator.SceneConfigs.FloatFromRight
@@ -91,6 +76,19 @@ class ReactNativeDrawerExperiment extends Component {
   }
 
   renderNavigatorWrapper() {
+    const MainView = () => {
+      return (
+        <View style={styles.container}>
+          <Text onPress={ () => this._drawerLeft.open() }>
+            Touch me left
+          </Text>
+          <Text onPress={ () => this._drawerRight.open() }>
+            Touch me right
+          </Text>
+        </View>
+      );
+    };
+
     return (
       <Navigator
         configureScene={ this.configureScene }
