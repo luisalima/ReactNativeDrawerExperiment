@@ -47,11 +47,12 @@ class ReactNativeDrawerExperiment extends Component {
       <Drawer
         type="static"
         openDrawerOffset={100}
-        closedDrawerOffset={10}
+        closedDrawerOffset={-10}
         styles={drawerStyles}
         tweenHandler={Drawer.tweenPresets.parallax}
         ref={(ref) => this._drawer = ref}
         content={this.controlPanel()}
+        panOpenMask={0.8}
         >
         {this.mainView()}
       </Drawer>
@@ -60,7 +61,7 @@ class ReactNativeDrawerExperiment extends Component {
 }
 
 const drawerStyles = {
-  drawer: { shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3},
+  drawer: { backgroundColor: 'red', shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3},
   main: {paddingLeft: 3},
 }
 
