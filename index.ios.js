@@ -10,12 +10,13 @@ import {
   StyleSheet,
   Text,
   View,
+  Navigator,
   TouchableHighLight
 } from 'react-native';
 
 import Drawer from 'react-native-drawer';
 
-class ReactNativeDrawerExperiment extends Component {
+class ExampleView extends Component {
   mainView() {
     return (
       <View style={styles.container}>
@@ -28,7 +29,7 @@ class ReactNativeDrawerExperiment extends Component {
       </View>
     );
   }
-
+  
   controlPanelLeft() {
     return (
       <View>
@@ -45,16 +46,15 @@ class ReactNativeDrawerExperiment extends Component {
     );
   }
 
-
   closeControlPanel = () => {
     this._drawer.close()
-  };
+  }
 
   openControlPanel = () => {
     this._drawer.open()
-  };
+  }
 
-  render () {
+  render() {
     return (
       <Drawer
         type="static"
@@ -67,7 +67,7 @@ class ReactNativeDrawerExperiment extends Component {
         panOpenMask={0.8}
         side="left"
         tapToClose
-        >
+      >
         <Drawer
           type="static"
           openDrawerOffset={100}
@@ -83,7 +83,59 @@ class ReactNativeDrawerExperiment extends Component {
           {this.mainView()}
         </Drawer>
       </Drawer>
+    );
+  }
+}
 
+class ReactNativeDrawerExperiment extends Component {
+  configureScene(route, routeStack) {
+    return Navigator.SceneConfigs.FloatFromRight
+  }
+
+  renderScene(route, navigator) {
+    const RouteComponent = route.component;
+    return (
+      <RouteComponent
+        navigator={navigator}
+        {...route.passProps}
+      />
+    );
+  }
+
+  routeMapper() {
+    return {
+      LeftButton: function(route, navigator, index, navState) {
+        return null;
+      },
+
+      RightButton: function(route, navigator, index, navState) {
+        return null;
+      },
+
+      Title: function(route, navigator, index, navState) {
+        return (
+          <Text style={styles.title}>
+            {route.title}
+          </Text>
+        );
+      }
+    };
+  }
+
+  render() {
+    return (
+      <Navigator
+        configureScene={ this.configureScene }
+        style={{flex: 1}}
+        initialRoute={{component: ExampleView, title: "Experiment List"}}
+        renderScene={ this.renderScene }
+        navigationBar={
+          <Navigator.NavigationBar
+            style={styles.nav}
+            routeMapper={this.routeMapper()}
+          />
+        }
+      />
     );
   }
 }
@@ -99,6 +151,9 @@ const drawerRightStyles = {
 }
 
 const styles = StyleSheet.create({
+  nav: {
+    backgroundColor: '#BAA1A7'
+  },
   container: {
     flex: 1,
     justifyContent: 'center',
