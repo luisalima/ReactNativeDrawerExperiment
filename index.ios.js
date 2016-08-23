@@ -63,6 +63,7 @@ class ReactNativeDrawerExperiment extends Component {
         content={this.controlPanelLeft()}
         panOpenMask={0.8}
         side="left"
+        tapToClose
         >
         <Drawer
           type="static"
@@ -74,6 +75,7 @@ class ReactNativeDrawerExperiment extends Component {
           content={this.controlPanelRight()}
           panOpenMask={0.8}
           side="right"
+          tapToClose
           >
           {this.mainView()}
         </Drawer>
