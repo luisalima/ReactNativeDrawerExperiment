@@ -139,13 +139,11 @@ class ReactNativeDrawerExperiment extends Component {
 }
 
 const drawerLeftStyles = {
-  drawer: { backgroundColor: 'green', shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3},
-  main: {paddingLeft: 3},
+  drawer: { backgroundColor: 'green' },
 }
 
 const drawerRightStyles = {
-  drawer: { backgroundColor: 'red', shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3},
-  main: {paddingLeft: 3},
+  drawer: { backgroundColor: 'red' },
 }
 
 const styles = StyleSheet.create({
