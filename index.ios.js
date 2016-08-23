@@ -32,13 +32,29 @@ class ReactNativeDrawerExperiment extends Component {
   }
 
   routeMapper() {
+    const that = this;
+
     return {
       LeftButton: function(route, navigator, index, navState) {
-        return null;
+        return (
+          <Text
+            style={styles.navBtnText}
+            onPress={() => that._drawerLeft.open()}
+          >
+            Left
+          </Text>
+        );
       },
 
       RightButton: function(route, navigator, index, navState) {
-        return null;
+        return (
+          <Text
+            style={styles.navBtnText}
+            onPress={() => that._drawerRight.open()}
+          >
+            Right
+          </Text>
+        );
       },
 
       Title: function(route, navigator, index, navState) {
@@ -65,14 +81,6 @@ class ReactNativeDrawerExperiment extends Component {
         <Text>CONTROL PANEL RIGHT!!!!</Text>
       </View>
     );
-  }
-
-  closeControlPanel = () => {
-    this._drawer.close()
-  }
-
-  openControlPanel = () => {
-    this._drawer.open()
   }
 
   renderNavigatorWrapper() {
@@ -149,6 +157,11 @@ const drawerRightStyles = {
 const styles = StyleSheet.create({
   nav: {
     backgroundColor: '#BAA1A7'
+  },
+  navBtnText: {
+    fontSize: 15,
+    marginLeft: 15,
+    marginRight: 15
   },
   container: {
     flex: 1,
