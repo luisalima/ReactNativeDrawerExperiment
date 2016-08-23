@@ -26,13 +26,22 @@ class ReactNativeDrawerExperiment extends Component {
     );
   }
 
-  controlPanel() {
+  controlPanelLeft() {
     return (
       <View>
-        <Text>CONTROL PANEL!!!!</Text>
+        <Text>CONTROL PANEL LEFT!!!!</Text>
       </View>
     );
   }
+
+  controlPanelRight() {
+    return (
+      <View>
+        <Text>CONTROL PANEL RIGHT!!!!</Text>
+      </View>
+    );
+  }
+
 
   closeControlPanel = () => {
     this._drawer.close()
@@ -48,19 +57,38 @@ class ReactNativeDrawerExperiment extends Component {
         type="static"
         openDrawerOffset={100}
         closedDrawerOffset={-10}
-        styles={drawerStyles}
+        styles={drawerLeftStyles}
         tweenHandler={Drawer.tweenPresets.parallax}
         ref={(ref) => this._drawer = ref}
-        content={this.controlPanel()}
+        content={this.controlPanelLeft()}
         panOpenMask={0.8}
+        side="left"
         >
-        {this.mainView()}
+        <Drawer
+          type="static"
+          openDrawerOffset={100}
+          closedDrawerOffset={-10}
+          styles={drawerRightStyles}
+          tweenHandler={Drawer.tweenPresets.parallax}
+          ref={(ref) => this._drawer = ref}
+          content={this.controlPanelRight()}
+          panOpenMask={0.8}
+          side="right"
+          >
+          {this.mainView()}
+        </Drawer>
       </Drawer>
+
     );
   }
 }
 
-const drawerStyles = {
+const drawerLeftStyles = {
+  drawer: { backgroundColor: 'green', shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3},
+  main: {paddingLeft: 3},
+}
+
+const drawerRightStyles = {
   drawer: { backgroundColor: 'red', shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3},
   main: {paddingLeft: 3},
 }
